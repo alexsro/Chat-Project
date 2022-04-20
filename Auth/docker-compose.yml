@@ -1,0 +1,33 @@
+version: "3"
+
+services:
+  postgres:
+    image: postgres
+    container_name: postgres-auth-api
+    restart: always
+    environment:
+      - POSTGRES_USER=UserAuthPostgres
+      - POSTGRES_PASSWORD=PassAuthPostgres
+    ports:
+      - 6432:5432
+    volumes:
+      - data_postgres
+
+  data_postgres:
+    image: cogniteev/echo
+    command: echo 'Data Container for Postgres'
+    volumes:
+      - /var/lib/postgresql/data
+
+  app:
+    build: .
+    command: yarn dev:server
+    container_name: auth-api
+    ports:
+      - 3334:3334
+    volumes:
+      - .:/usr/app
+      - /usr/app/node_modules
+    links: 
+      - data_postgres
+      - postgres
