@@ -1,7 +1,8 @@
 
 import IUsersRepository from '@modules/users/repositories/IUsersRepository';
-import { User, Prisma } from '@prisma/client';
+import { Prisma } from '@prisma/client';
 import { client } from '../../../../../shared/infra/prisma/client';
+import User from '../entities/User';
 
 export default class UsersRepository implements IUsersRepository {
   public async findById(id: string): Promise<User | undefined> {
@@ -30,5 +31,11 @@ export default class UsersRepository implements IUsersRepository {
     });
 
     return user;
+  }
+
+  public async list(): Promise<User[]> {
+    const users = await client.user.findMany()
+
+    return users;
   }
 }

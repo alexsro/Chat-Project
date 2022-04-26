@@ -2,7 +2,7 @@ import AppError from '../../../shared/errors/AppError'
 import { inject, injectable } from 'tsyringe';
 
 import IHashProvider from '../providers/HashProvider/models/iHashProvider';
-import {User} from '@prisma/client'
+import User from '../infra/prisma/entities/User';
 import IUsersRepository from '../repositories/IUsersRepository';
 
 interface IRequest {

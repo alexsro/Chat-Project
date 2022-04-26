@@ -12,9 +12,10 @@ const usersController = new UsersController();
 // const userAvatarController = new UserAvatarController();
 // const upload = multer(uploadConfig.multer);
 
-usersRouter.get('/', (req, res) => {
-  res.send('teste2')
-})
+usersRouter.get(
+  '/',
+  usersController.list
+)
 
 usersRouter.post(
   '/',
