@@ -3,6 +3,8 @@ import { container } from 'tsyringe';
 
 import CreateUserService from '../../../services/CreateUserService';
 import ListUserService from '../../../services/ListUserService';
+import { plainToInstance } from 'class-transformer'
+import User from '../../prisma/entities/User';
 
 export default class UsersController {
   public async create(request: Request, response: Response): Promise<Response> {
@@ -16,17 +18,15 @@ export default class UsersController {
       password,
     });
 
-    delete user.password
-    return response.send(user);
+    return response.send(plainToInstance(User,user));
   }
 
   public async list(request: Request, response: Response): Promise<Response> {
     const list = container.resolve(ListUserService)
 
     const users = await list.execute();
-  
-    users.forEach(user => {delete user.password})
-    return response.send(users)
+
+    return response.send(plainToInstance(User, users))
   }
 
 }
