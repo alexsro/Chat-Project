@@ -3,7 +3,6 @@ import { container } from 'tsyringe';
 
 import CreateUserService from '../../../services/CreateUserService';
 import ListUserService from '../../../services/ListUserService';
-import { instanceToPlain } from 'class-transformer';
 
 export default class UsersController {
   public async create(request: Request, response: Response): Promise<Response> {
@@ -17,15 +16,17 @@ export default class UsersController {
       password,
     });
 
-    return response.send(instanceToPlain(user));
+    delete user.password
+    return response.send(user);
   }
 
   public async list(request: Request, response: Response): Promise<Response> {
     const list = container.resolve(ListUserService)
 
     const users = await list.execute();
-
-    return response.send(instanceToPlain(users))
+  
+    users.forEach(user => {delete user.password})
+    return response.send(users)
   }
 
 }

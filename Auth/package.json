@@ -10,11 +10,13 @@
   },
   "dependencies": {
     "@prisma/client": "^3.11.1",
+    "@types/jsonwebtoken": "^8.5.8",
     "bcryptjs": "^2.4.3",
     "celebrate": "^15.0.1",
     "class-transformer": "^0.5.1",
     "cors": "^2.8.5",
     "express": "^4.17.3",
+    "jsonwebtoken": "^8.5.1",
     "rate-limiter-flexible": "^2.3.6",
     "reflect-metadata": "^0.1.13",
     "tsyringe": "^4.6.0",
