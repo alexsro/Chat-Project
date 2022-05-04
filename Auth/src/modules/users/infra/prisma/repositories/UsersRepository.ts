@@ -1,10 +1,10 @@
 
-import IUsersRepository from '@modules/users/repositories/IUsersRepository';
+import IUsersRepository from '../../../repositories/IUsersRepository';
 import { Prisma } from '@prisma/client';
 import { client } from '../../../../../shared/infra/prisma/client';
 import User from '../entities/User';
+class UsersRepository implements IUsersRepository {
 
-export default class UsersRepository implements IUsersRepository {
   public async findById(id: string): Promise<User | undefined> {
     const findUser = await client.user.findUnique({
       where: { id },
@@ -39,3 +39,5 @@ export default class UsersRepository implements IUsersRepository {
     return users;
   }
 }
+
+export default UsersRepository;

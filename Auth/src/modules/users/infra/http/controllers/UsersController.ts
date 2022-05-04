@@ -6,7 +6,7 @@ import ListUserService from '../../../services/ListUserService';
 import { plainToInstance } from 'class-transformer'
 import User from '../../prisma/entities/User';
 
-export default class UsersController {
+class UsersController {
   public async create(request: Request, response: Response): Promise<Response> {
     const { name, email, password } = request.body;
 
@@ -30,3 +30,5 @@ export default class UsersController {
   }
 
 }
+
+export default UsersController;

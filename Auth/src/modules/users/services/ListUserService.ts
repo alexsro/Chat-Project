@@ -11,7 +11,7 @@ class ListUserService {
   ) {}
 
   public async execute(): Promise<User[]> {
-    const users = this.usersRepository.list();
+    const users = await this.usersRepository.list();
 
     return users;
   }
