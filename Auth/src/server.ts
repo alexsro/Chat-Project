@@ -16,5 +16,5 @@ app.use(errors());
 app.use(globalExceptionHandler);
 
 app.listen(3334, () => {
-  console.log('Authentication API started on port 3334');
+  console.log('Authentication API started on port 3334!');
 })
