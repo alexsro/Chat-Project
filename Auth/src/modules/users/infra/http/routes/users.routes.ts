@@ -1,4 +1,4 @@
-import { Router } from 'express';
+import { Router, Response, Request } from 'express';
 import { celebrate, Joi, Segments } from 'celebrate';
 import UsersController from '../controllers/UsersController';
 
@@ -8,6 +8,13 @@ const usersController = new UsersController();
 usersRouter.get(
   '/',
   usersController.list
+)
+
+usersRouter.get(
+  '/test',
+  async (request: Request, response: Response) => {
+    return response.send('users')
+  }
 )
 
 usersRouter.post(

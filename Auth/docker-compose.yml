@@ -11,12 +11,6 @@ services:
     ports:
       - 6432:5432
     volumes:
-      - data_postgres
-
-  data_postgres:
-    image: cogniteev/echo
-    command: echo 'Data Container for Postgres'
-    volumes:
       - /var/lib/postgresql/data
 
   app:
@@ -29,5 +23,5 @@ services:
       - .:/usr/app
       - /usr/app/node_modules
     links: 
-      - data_postgres
       - postgres
+    restart: always
