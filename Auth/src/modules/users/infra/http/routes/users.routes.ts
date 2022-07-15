@@ -10,13 +10,6 @@ usersRouter.get(
   usersController.list
 )
 
-usersRouter.get(
-  '/test',
-  async (request: Request, response: Response) => {
-    return response.send('users')
-  }
-)
-
 usersRouter.post(
   '/',
   celebrate({
