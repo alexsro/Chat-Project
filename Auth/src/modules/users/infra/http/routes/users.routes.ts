@@ -1,6 +1,7 @@
 import { Router, Response, Request } from 'express';
 import { celebrate, Joi, Segments } from 'celebrate';
 import UsersController from '../controllers/UsersController';
+import ensureAuthenticated from '../middlewares/ensureAuthenticated';
 
 const usersRouter = Router();
 const usersController = new UsersController();
@@ -19,6 +20,7 @@ usersRouter.post(
       password: Joi.string().required(),
     },
   }),
+  ensureAuthenticated,
   usersController.create,
 );
 

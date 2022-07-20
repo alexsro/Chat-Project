@@ -10,6 +10,11 @@ RUN yarn
 COPY . .
 
 RUN yarn build
+RUN chmod 777 prisma
+RUN chmod 777 prisma/
+RUN chmod 777 node_modules/.prisma/client/package.json
+RUN chmod 777 node_modules/.prisma/client
+RUN chmod 777 node_modules/.prisma/client/index.d.ts
 RUN npx prisma generate
 
 EXPOSE 3334

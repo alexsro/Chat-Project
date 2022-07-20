@@ -1,7 +1,9 @@
+import { plainToInstance } from 'class-transformer';
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
 
 import AuthenticateUserService from '../../../services/AuthenticateUserService';
+import User from '../../prisma/entities/User';
 
 export default class SessionsController {
   public async create(request: Request, response: Response): Promise<Response> {
@@ -9,11 +11,13 @@ export default class SessionsController {
 
     const authenticateUser = container.resolve(AuthenticateUserService);
 
-    const { user, token } = await authenticateUser.execute({
+    const { user, access_token, refresh_token } = await authenticateUser.execute({
       email,
       password,
     });
 
-    return response.json({ user, token });
+    const plainUser = plainToInstance(User, user)
+
+    return response.json({ plainUser, access_token, refresh_token });
   }
 }
