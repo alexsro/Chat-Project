@@ -8,8 +8,9 @@ const usersController = new UsersController();
 
 usersRouter.get(
   '/',
+  ensureAuthenticated,
   usersController.list
-)
+);
 
 usersRouter.post(
   '/',
@@ -21,7 +22,7 @@ usersRouter.post(
     },
   }),
   ensureAuthenticated,
-  usersController.create,
+  usersController.create
 );
 
 export default usersRouter;
