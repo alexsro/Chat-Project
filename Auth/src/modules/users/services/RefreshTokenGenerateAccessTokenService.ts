@@ -14,7 +14,7 @@ interface IResponse {
 }
 
 @injectable()
-class RefreshTokenUserService {
+class RefreshTokenGenerateAccessTokenService {
   constructor(
     @inject('TokenProvider')
     private tokenProvider: ITokenProvider,
@@ -44,4 +44,4 @@ class RefreshTokenUserService {
   }
 }
 
-export default RefreshTokenUserService;
+export default RefreshTokenGenerateAccessTokenService;

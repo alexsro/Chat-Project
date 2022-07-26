@@ -15,4 +15,14 @@ refreshTokenRouter.post(
   refreshTokenController.create
 );
 
+refreshTokenRouter.delete(
+  '/:refresh_token_id',
+  celebrate({
+    [Segments.PARAMS]: {
+      refresh_token_id: Joi.string().uuid().required(),
+    },
+  }),
+  refreshTokenController.delete
+)
+
 export default refreshTokenRouter;
