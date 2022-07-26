@@ -1,8 +1,7 @@
-import AppError from "@shared/errors/AppError";
+import AppError from "../../../shared/errors/AppError";
 import dayjs from "dayjs";
 import { SignOptions } from "jsonwebtoken";
 import { inject, injectable } from "tsyringe";
-import RefreshToken from "../infra/prisma/entities/RefreshToken";
 import ITokenProvider from "../providers/TokenProvider/models/iTokenProvider";
 import IRefreshTokenRepository from "../repositories/IRefreshTokenRepository";
 
@@ -15,7 +14,7 @@ interface IResponse {
 }
 
 @injectable()
-class RefreshAuthenticateUserService {
+class RefreshTokenGenerateAccessTokenService {
   constructor(
     @inject('TokenProvider')
     private tokenProvider: ITokenProvider,
@@ -33,7 +32,7 @@ class RefreshAuthenticateUserService {
 
     const refreshTokenExpired = dayjs().isAfter(dayjs.unix(refreshToken.expiresIn))
     if (refreshTokenExpired) {
-      throw new AppError ("Refresh token expired", 401)
+      throw new AppError ("Refresh token expired. Authenticate your user to receive a new", 401)
     }
 
     const options: SignOptions = {
@@ -45,4 +44,4 @@ class RefreshAuthenticateUserService {
   }
 }
 
-export default RefreshAuthenticateUserService
+export default RefreshTokenGenerateAccessTokenService;

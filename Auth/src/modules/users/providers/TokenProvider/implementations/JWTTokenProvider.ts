@@ -23,7 +23,7 @@ class JWTTokenProvider implements ITokenProvider {
   }
 
   public async generateRefreshToken(userId: string): Promise<RefreshToken> {
-    const expiresIn = dayjs().add(1, "d").unix()
+    const expiresIn = dayjs().add(7, "d").unix()
     const generatedRefreshToken =  await this.refreshTokenRepository.create({
       expiresIn,
       userId
