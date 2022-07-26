@@ -1,9 +1,9 @@
-import AppError from "../../../shared/errors/AppError";
+import AppError from "@shared/errors/AppError";
 import dayjs from "dayjs";
 import { SignOptions } from "jsonwebtoken";
 import { inject, injectable } from "tsyringe";
-import ITokenProvider from "../providers/TokenProvider/models/iTokenProvider";
-import IRefreshTokenRepository from "../repositories/IRefreshTokenRepository";
+import ITokenProvider from "@modules/users/providers/TokenProvider/models/iTokenProvider";
+import IRefreshTokenRepository from "@modules/users/repositories/IRefreshTokenRepository";
 
 interface IRequest {
   refresh_token: string;

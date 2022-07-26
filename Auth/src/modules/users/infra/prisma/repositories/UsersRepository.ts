@@ -1,7 +1,7 @@
 
-import IUsersRepository from '../../../repositories/IUsersRepository';
+import IUsersRepository from '@modules/users/repositories/IUsersRepository';
 import { Prisma } from '@prisma/client';
-import { client } from '../../../../../shared/infra/prisma/client';
+import { client } from '@shared/infra/prisma/client';
 import User from '../entities/User';
 class UsersRepository implements IUsersRepository {
 

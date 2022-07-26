@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 import 'express-async-errors'
-import AppError from '../../../errors/AppError';
+import AppError from '@shared/errors/AppError';
 
 export default function globalExceptionHandler(
   err: Error,

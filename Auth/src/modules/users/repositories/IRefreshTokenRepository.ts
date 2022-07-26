@@ -1,5 +1,5 @@
 import { Prisma } from "@prisma/client";
-import RefreshToken from "../infra/prisma/entities/RefreshToken";
+import RefreshToken from "@modules/users/infra/prisma/entities/RefreshToken";
 
 export default interface IRefreshTokenRepository {
   create(refreshTokenData: Prisma.RefreshTokenCreateManyInput): Promise<RefreshToken>

@@ -2,8 +2,8 @@ import { plainToInstance } from 'class-transformer';
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
 
-import AuthenticateUserService from '../../../services/AuthenticateUserService';
-import User from '../../prisma/entities/User';
+import AuthenticateUserService from '@modules/users/services/AuthenticateUserService';
+import User from '@modules/users/infra/prisma/entities/User';
 
 export default class SessionsController {
   public async create(request: Request, response: Response): Promise<Response> {
