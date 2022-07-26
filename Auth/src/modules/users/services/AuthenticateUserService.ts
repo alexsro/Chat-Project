@@ -1,13 +1,13 @@
 import { SignOptions } from 'jsonwebtoken';
 import { inject, injectable } from 'tsyringe';
 
-import AppError from '../../../shared/errors/AppError';
-import IUsersRepository from '../repositories/IUsersRepository';
-import IHashProvider from '../providers/HashProvider/models/iHashProvider';
-import User from '../infra/prisma/entities/User';
-import ITokenProvider from '../providers/TokenProvider/models/iTokenProvider';
-import RefreshToken from '../infra/prisma/entities/RefreshToken';
-import IRefreshTokenRepository from '../repositories/IRefreshTokenRepository';
+import AppError from '@shared/errors/AppError';
+import IUsersRepository from '@modules/users/repositories/IUsersRepository';
+import IHashProvider from '@modules/users/providers/HashProvider/models/iHashProvider';
+import User from '@modules/users/infra/prisma/entities/User';
+import ITokenProvider from '@modules/users/providers/TokenProvider/models/iTokenProvider';
+import RefreshToken from '@modules/users/infra/prisma/entities/RefreshToken';
+import IRefreshTokenRepository from '@modules/users/repositories/IRefreshTokenRepository';
 import dayjs from 'dayjs';
 
 interface IRequest {

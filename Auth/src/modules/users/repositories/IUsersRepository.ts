@@ -1,5 +1,5 @@
 import { Prisma } from '@prisma/client'
-import User from '../infra/prisma/entities/User';
+import User from '@modules/users/infra/prisma/entities/User';
 export default interface IUsersRepository {
   findById(id: string): Promise<User | undefined>;
   findByEmail(email: string): Promise<User | undefined>;

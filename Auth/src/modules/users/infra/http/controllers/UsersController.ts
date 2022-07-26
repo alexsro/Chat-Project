@@ -1,10 +1,10 @@
 import { Request, Response } from 'express'
 import { container } from 'tsyringe';
 
-import CreateUserService from '../../../services/CreateUserService';
-import ListUserService from '../../../services/ListUserService';
+import CreateUserService from '@modules/users/services/CreateUserService';
+import ListUserService from '@modules/users/services/ListUserService';
 import { plainToInstance } from 'class-transformer'
-import User from '../../prisma/entities/User';
+import User from '@modules/users/infra/prisma/entities/User';
 
 class UsersController {
   public async create(request: Request, response: Response): Promise<Response> {

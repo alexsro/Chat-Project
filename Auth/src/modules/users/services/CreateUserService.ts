@@ -1,9 +1,9 @@
-import AppError from '../../../shared/errors/AppError'
+import AppError from '@shared/errors/AppError'
 import { inject, injectable } from 'tsyringe';
 
-import IHashProvider from '../providers/HashProvider/models/iHashProvider';
-import User from '../infra/prisma/entities/User';
-import IUsersRepository from '../repositories/IUsersRepository';
+import IHashProvider from '@modules/users/providers/HashProvider/models/iHashProvider';
+import User from '@modules/users/infra/prisma/entities/User';
+import IUsersRepository from '@modules/users/repositories/IUsersRepository';
 
 interface IRequest {
   name: string;

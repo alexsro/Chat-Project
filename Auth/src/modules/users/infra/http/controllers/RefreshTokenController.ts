@@ -1,8 +1,8 @@
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
 
-import RefreshTokenGenerateAccessTokenService from '../../../services/RefreshTokenGenerateAccessTokenService';
-import RefreshTokenInvalidateService from '../../../services/RefreshTokenInvalidateService';
+import RefreshTokenGenerateAccessTokenService from '@modules/users/services/RefreshTokenGenerateAccessTokenService';
+import RefreshTokenInvalidateService from '@modules/users/services/RefreshTokenInvalidateService';
 
 export default class RefreshTokenController {
   public async create(request: Request, response: Response): Promise<Response> {

@@ -1,8 +1,8 @@
 
-import IRefreshTokenRepository from '../../../repositories/IRefreshTokenRepository';
+import IRefreshTokenRepository from '@modules/users/repositories/IRefreshTokenRepository';
 import { Prisma } from '@prisma/client';
-import { client } from '../../../../../shared/infra/prisma/client';
-import RefreshToken from '../entities/RefreshToken';
+import { client } from '@shared/infra/prisma/client';
+import RefreshToken from '@modules/users/infra/prisma/entities/RefreshToken';
 class RefreshTokenRepository implements IRefreshTokenRepository {
   public async create(refreshTokenData: Prisma.RefreshTokenCreateManyInput): Promise<RefreshToken> {
     const refreshToken = await client.refreshToken.create({

@@ -2,12 +2,12 @@ import 'reflect-metadata';
 import express from "express";
 import cors from 'cors';
 import { errors } from 'celebrate';
-import globalExceptionHandler from './shared/infra/http/middlewares/globalExceptionHandler';
-import routes from "./shared/infra/http/routes";
+import globalExceptionHandler from '@shared/infra/http/middlewares/globalExceptionHandler';
+import routes from "@shared/infra/http/routes";
 
 const app = express();
 
-import './shared/container';
+import '@shared/container';
 
 app.use(cors())
 app.use(express.json());

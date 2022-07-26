@@ -1,7 +1,7 @@
-import AppError from "../../../shared/errors/AppError";
+import AppError from "@shared/errors/AppError";
 import dayjs from "dayjs";
 import { inject, injectable } from "tsyringe";
-import IRefreshTokenRepository from "../repositories/IRefreshTokenRepository";
+import IRefreshTokenRepository from "@modules/users/repositories/IRefreshTokenRepository";
 
 interface IRequest {
   refresh_token_id: string;

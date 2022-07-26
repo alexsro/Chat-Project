@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "build": "tsc",
-    "dev:server": "ts-node-dev --respawn --exit-child --transpile-only --inspect --ignore-watch node_modules src/server.ts",
+    "dev:server": "ts-node-dev --respawn --exit-child --transpile-only --inspect --ignore-watch -r tsconfig-paths/register src/server.ts node_modules src/server.ts",
     "start": "ts-node src/server.ts"
   },
   "dependencies": {
@@ -30,6 +30,7 @@
     "prisma": "^3.11.1",
     "reflect-metadata": "^0.1.13",
     "ts-node-dev": "^1.1.8",
+    "tsconfig-paths": "^4.0.0",
     "typescript": "^4.6.2"
   }
 }
