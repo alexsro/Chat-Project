@@ -1,8 +1,8 @@
 import { uuid } from 'uuidv4';
 
-import IUsersRepository from '../../repositories/IUsersRepository';
+import IUsersRepository from '@modules/users/repositories/IUsersRepository';
 import { Prisma } from '@prisma/client';
-import User from '../../infra/prisma/entities/User';
+import User from '@modules/users/infra/prisma/entities/User';
 
 class FakeUsersRepository implements IUsersRepository {
   private users: User[] = [];

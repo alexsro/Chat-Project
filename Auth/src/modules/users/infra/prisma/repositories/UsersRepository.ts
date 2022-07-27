@@ -23,7 +23,7 @@ class UsersRepository implements IUsersRepository {
 
   public async create(userData: Prisma.UserCreateInput): Promise<User> {
     const user = await client.user.create({
-      data: { 
+      data: {
         email: userData.email,
         name: userData.name,
         password: userData.password,
