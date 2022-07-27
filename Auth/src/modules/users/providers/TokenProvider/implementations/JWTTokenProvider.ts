@@ -1,10 +1,10 @@
-import IRefreshTokenRepository from "../../../../users/repositories/IRefreshTokenRepository";
+import IRefreshTokenRepository from "@modules/users/repositories/IRefreshTokenRepository";
 import { sign, SignOptions } from "jsonwebtoken";
 import dayjs from "dayjs";
 import { inject, injectable } from "tsyringe";
-import authConfig from '../../../../../config/auth';
+import authConfig from '@config/auth';
 import ITokenProvider from "../models/iTokenProvider";
-import RefreshToken from "../../../../users/infra/prisma/entities/RefreshToken";
+import RefreshToken from "@modules/users/infra/prisma/entities/RefreshToken";
 
 @injectable()
 class JWTTokenProvider implements ITokenProvider {

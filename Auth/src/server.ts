@@ -5,9 +5,9 @@ import { errors } from 'celebrate';
 import globalExceptionHandler from '@shared/infra/http/middlewares/globalExceptionHandler';
 import routes from "@shared/infra/http/routes";
 
-const app = express();
-
 import '@shared/container';
+
+const app = express();
 
 app.use(cors())
 app.use(express.json());
