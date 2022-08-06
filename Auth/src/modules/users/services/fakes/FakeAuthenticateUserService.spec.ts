@@ -8,7 +8,7 @@ import AuthenticateUserService from '../AuthenticateUserService';
 import CreateUserService from '../CreateUserService'
 import dayjs from "dayjs";
 
-let fakeUserRepository: FakeUsersRepository;
+let fakeUsersRepository: FakeUsersRepository;
 let fakeHashProvider: FakeHashProvider;
 let fakeTokenProvider: FakeTokenProvider;
 let fakeRefreshTokenRepository: FakeRefreshTokenRepository;
@@ -18,18 +18,18 @@ let createUser: CreateUserService;
 
 describe('AuthenticateUser', () => {
   beforeEach(() => {
-    fakeUserRepository = new FakeUsersRepository;
+    fakeUsersRepository = new FakeUsersRepository;
     fakeHashProvider = new FakeHashProvider;
     fakeTokenProvider = new FakeTokenProvider;
     fakeRefreshTokenRepository = new FakeRefreshTokenRepository;
     authenticateUser = new AuthenticateUserService(
-      fakeUserRepository,
+      fakeUsersRepository,
       fakeHashProvider,
       fakeTokenProvider,
       fakeRefreshTokenRepository
     );
     createUser = new CreateUserService(
-      fakeUserRepository,
+      fakeUsersRepository,
       fakeHashProvider
     )
   });

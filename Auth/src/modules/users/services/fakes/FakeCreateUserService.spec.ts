@@ -5,17 +5,17 @@ import FakeHashProvider from "@modules/users/providers/HashProvider/fakes/FakeHa
 import CreateUserService from '../CreateUserService';
 import User from "@modules/users/infra/prisma/entities/User";
 
-let fakeUserRepository: FakeUsersRepository;
+let fakeUsersRepository: FakeUsersRepository;
 let fakeHashProvider: FakeHashProvider;
 let createUser: CreateUserService;
 
 describe('CreateUser', () => {
   beforeEach(() => {
-    fakeUserRepository = new FakeUsersRepository;
+    fakeUsersRepository = new FakeUsersRepository;
     fakeHashProvider = new FakeHashProvider;
 
     createUser = new CreateUserService(
-      fakeUserRepository,
+      fakeUsersRepository,
       fakeHashProvider
     );
   });
