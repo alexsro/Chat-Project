@@ -8,16 +8,16 @@ import FakeRefreshTokenRepository from "@modules/users/repositories/fakes/FakeRe
 import FakeUsersRepository from "@modules/users/repositories/fakes/FakeUsersRepository";
 
 import CreateUserService from "../CreateUserService";
-import RefreshTokenGenerateAccessTokenService from '../RefreshTokenGenerateAccessTokenService'
+import RefreshTokenInvalidateService from '../RefreshTokenInvalidateService'
 
 let fakeTokenProvider: FakeTokenProvider;
 let fakeHashProvider: FakeHashProvider;
 let fakeRefreshTokenRepository: FakeRefreshTokenRepository;
 let fakeUsersRepository: FakeUsersRepository;
 let createUser: CreateUserService;
-let refreshTokenGenerateAccessToken: RefreshTokenGenerateAccessTokenService;
+let refreshTokenInvalidade: RefreshTokenInvalidateService;
 
-describe('RefreshTokenGenerateAccessToken', () => {
+describe('refreshTokenInvalidade', () => {
   beforeEach(() => {
     fakeTokenProvider = new FakeTokenProvider;
     fakeHashProvider = new FakeHashProvider;
@@ -29,19 +29,18 @@ describe('RefreshTokenGenerateAccessToken', () => {
       fakeHashProvider
     );
 
-    refreshTokenGenerateAccessToken = new RefreshTokenGenerateAccessTokenService(
-      fakeTokenProvider,
+    refreshTokenInvalidade = new RefreshTokenInvalidateService(
       fakeRefreshTokenRepository
     );
   });
 
-  it('Should not be able to validate an invalid refresh token', async () => {
-    await expect(refreshTokenGenerateAccessToken.execute({
-      refresh_token: '123'
+  it('Should not be able to invalidate an invalid refresh token', async () => {
+    await expect(refreshTokenInvalidade.execute({
+      refresh_token_id: '123'
     })).rejects.toBeInstanceOf(AppError);
   });
 
-  it('Should not be able to validate an expired refresh token', async () => {
+  it('Should not be able to invalidate an expired refresh token', async () => {
     const name = 'User1';
     const email = 'alex000sander@gmail.com'
     const password = '123456'
@@ -58,12 +57,12 @@ describe('RefreshTokenGenerateAccessToken', () => {
       userId: user.id
     });
 
-    await expect(refreshTokenGenerateAccessToken.execute({
-      refresh_token: refresh_token.id
+    await expect(refreshTokenInvalidade.execute({
+      refresh_token_id: refresh_token.id
     })).rejects.toBeInstanceOf(AppError)
   });
 
-  it('Should be able to validate an valid refresh token and return a new access token', async () => {
+  it('Should be able to invalidate an valid refresh token', async () => {
     const name = 'User1';
     const email = 'alex000sander@gmail.com'
     const password = '123456'
@@ -80,12 +79,9 @@ describe('RefreshTokenGenerateAccessToken', () => {
       userId: user.id
     });
 
-    const access_token = await refreshTokenGenerateAccessToken.execute({
-      refresh_token: refresh_token.id
-    });
 
-    expect(access_token).toHaveProperty('access_token');
+    await expect(await refreshTokenInvalidade.execute({
+      refresh_token_id: refresh_token.id
+    })).toBeTruthy
   });
-
-
 })
