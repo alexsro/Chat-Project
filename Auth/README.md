@@ -2,7 +2,7 @@
 
 &nbsp;&nbsp;&nbsp;&nbsp;This api is responsable for users management and authentication
 
-# Commands to setup 
+# Commands to setup
 &nbsp;&nbsp;&nbsp;&nbsp; Use the following commands to setup auth-api
 - docker build -t auth_app .
 - docker-compose up --build
@@ -16,11 +16,18 @@
 
 # Used tecnologies
 
+#
+
 - Express
 - Typescript
 - Jwt
 - PostgreSQL
-- bcrypt (criptograph)
-- uuidv4 (id generator)
-- tsrynge  (dependency injection)
-- dayjs (date manipulation lib)
+- bcrypt (Criptograph)
+- uuidv4 (Id generator)
+- tsrynge (Dependency injection)
+- dayjs(Date manipulation lib)
+- Jest(Tests)
+- Prettier
+- EsLint
+- Celebrate(Validation)
+- Class-transformer (Class transformer)
