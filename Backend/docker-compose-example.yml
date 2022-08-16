@@ -1,0 +1,26 @@
+version: "3"
+
+services:
+  postgres:
+    image: postgres
+    restart: always
+    environment:
+      - POSTGRES_USER=PostgresUser
+      - POSTGRES_PASSWORD=PostgresPassword
+    ports:
+      - 6433:5433
+    volumes:
+      - /var/lib/postgresql/data
+
+  app:
+    build: .
+    command: yarn dev:server
+    container_name: chat-backend
+    ports:
+      - 3335:3335
+    volumes:
+      - .:/usr/app
+      - /usr/app/node_modules
+    links:
+      - postgres
+    restart: always

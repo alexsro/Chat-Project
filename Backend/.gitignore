@@ -1,0 +1,8 @@
+node_modules
+prisma/migrations
+yarn-error.log
+yarn.lock
+docker-compose.yml
+# Keep environment variables out of version control
+.env
+.txt

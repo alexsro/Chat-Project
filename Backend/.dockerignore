@@ -1,0 +1,10 @@
+.dockerignore
+node_modules/*
+node_modules
+!node_modules/tsconfig-paths
+npm-debug.log
+Dockerfile
+.git
+.gitignore
+.npmrc
+.txt
