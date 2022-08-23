@@ -38,6 +38,25 @@ class UsersRepository implements IUsersRepository {
 
     return users;
   }
+
+  public async save(user: User): Promise<User> {
+    return await client.user.update({
+      where: {
+        id: user.id
+      },
+      data: user
+    });
+  }
+
+  public async delete(id: string): Promise<User> {
+    const deletedUser = await client.user.delete({
+      where: {
+        id
+      }
+    });
+
+    return deletedUser;
+  }
 }
 
 export default UsersRepository;
