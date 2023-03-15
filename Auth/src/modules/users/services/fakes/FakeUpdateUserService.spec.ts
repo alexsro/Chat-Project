@@ -5,7 +5,7 @@ import UpdateUserService from "@modules/users/services/UpdateUserService";
 import User from "@modules/users/infra/prisma/entities/User";
 
 let fakeUsersRepository: FakeUsersRepository;
-let updateUserService: UpdateUserService;
+let updateUser: UpdateUserService;
 
 describe('UpdateUser', () => {
   beforeEach(() => {
@@ -20,10 +20,10 @@ describe('UpdateUser', () => {
     const name = 'User1';
     const email = 'alex000sander@gmail.com'
     const password = '123456'
-    const id = '157091'
+    const user_id = '157091'
 
     await expect(updateUser.execute({
-      id,
+      user_id,
       name,
       email,
       password

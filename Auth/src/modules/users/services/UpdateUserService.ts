@@ -1,9 +1,9 @@
 import AppError from "@shared/errors/AppError";
 
-import UsersRepository from "../infra/prisma/repositories/UsersRepository";
 import User from "../infra/prisma/entities/User";
 import { inject, injectable } from "tsyringe";
 import IUsersRepository from "../repositories/IUsersRepository";
+import IHashProvider from "../providers/HashProvider/models/iHashProvider";
 
 interface IRequest {
   user_id: string;
@@ -18,7 +18,10 @@ interface IRequest {
 class UpdateUserService {
   constructor(
     @inject('UsersRepository')
-    private usersRepository: IUsersRepository
+    private usersRepository: IUsersRepository,
+
+    @inject('HashProvider')
+    private hashProvider: IHashProvider
   ) {}
 
   public async execute({user_id, name, email, old_password, password}: IRequest): Promise<User>{
@@ -33,15 +36,31 @@ class UpdateUserService {
       throw new AppError('Email adress alterady used.');
     }
 
+    if (password && !old_password){
+      throw new AppError('Old password is required')
+    } else if (password && old_password) {
+      const passwordMatched = await this.hashProvider.compareHash(
+        old_password,
+        user.password,
+      );
+
+      if (!passwordMatched) {
+        throw new AppError(`Incorrect email/password combination.`, 401);
+      }
+
+      if (password != old_password) {
+        const hashedPassword = await this.hashProvider.generateHash(password);
+        user.password = hashedPassword
+      }
+    }
+
     user.name = name;
     user.email = email;
 
-    if (password && !old_password){
-      throw new AppError('Old password is required')
-    }
+    const updatedUser = await this.usersRepository.save(user)
 
 
-
+    return updatedUser
   }
 
 };

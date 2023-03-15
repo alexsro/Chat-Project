@@ -1,4 +1,4 @@
-import { Router, Response, Request } from 'express';
+import { Router } from 'express';
 import { celebrate, Joi, Segments } from 'celebrate';
 import UsersController from '../controllers/UsersController';
 import ensureAuthenticated from '../middlewares/ensureAuthenticated';
@@ -24,5 +24,19 @@ usersRouter.post(
   ensureAuthenticated,
   usersController.create
 );
+
+usersRouter.put(
+  '/:id?',
+  celebrate({
+    [Segments.BODY]: {
+      name: Joi.string().required(),
+      email: Joi.string().email().required(),
+      old_password: Joi.string(),
+      password: Joi.ref('old_password')
+    },
+  }),
+  ensureAuthenticated,
+  usersController.update
+)
 
 export default usersRouter;

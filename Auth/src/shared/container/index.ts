@@ -3,7 +3,7 @@ import '@modules/users/providers';
 
 import IUsersRepository from '@modules/users/repositories/IUsersRepository';
 import UsersRepository from '@modules/users/infra/prisma/repositories/UsersRepository';
-import IRefreshTokenReposository from '@modules/users/repositories/IRefreshTokenRepository';
+import IRefreshTokenRepository from '@modules/users/repositories/IRefreshTokenRepository';
 import RefreshTokenRepository from '@modules/users/infra/prisma/repositories/RefreshTokenRepository';
 
 container.registerSingleton<IUsersRepository>(
@@ -11,7 +11,7 @@ container.registerSingleton<IUsersRepository>(
   UsersRepository,
 );
 
-container.registerSingleton<IRefreshTokenReposository>(
+container.registerSingleton<IRefreshTokenRepository>(
   'RefreshTokenRepository',
   RefreshTokenRepository,
 );
