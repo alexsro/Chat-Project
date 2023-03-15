@@ -5,4 +5,6 @@ export default interface IUsersRepository {
   findByEmail(email: string): Promise<User | undefined>;
   create(data: Prisma.UserCreateInput): Promise<User>;
   list(): Promise<User[]>;
+  save(user: User): Promise<User>;
+  delete(id: string): Promise<User>;
 }
