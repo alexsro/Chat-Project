@@ -19,7 +19,7 @@ class UsersController {
       password,
     });
 
-    return response.send(plainToInstance(User,user));
+    return response.send(plainToInstance(User, user));
   }
 
   public async list(request: Request, response: Response): Promise<Response> {

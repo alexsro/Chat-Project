@@ -10,7 +10,7 @@ let listUsers: ListUserService
 
 
 describe('ListUsers', () => {
-  beforeEach(() => {
+  beforeAll(() => {
     fakeUsersRepository = new FakeUsersRepository;
     fakeHashProvider = new FakeHashProvider;
 
@@ -23,6 +23,13 @@ describe('ListUsers', () => {
       fakeUsersRepository
     );
   });
+
+
+  it('Should be able to return an empty list', async () => {
+    const users = await listUsers.execute();
+
+    expect(users).toHaveLength(0)
+  })
 
   it('Should be able to list all users', async () => {
     const name = 'User1'
@@ -38,11 +45,5 @@ describe('ListUsers', () => {
     const users = await listUsers.execute();
 
     expect(users).toHaveLength(1)
-  })
-
-  it('Should be able to return an empty list', async () => {
-    const users = await listUsers.execute();
-
-    expect(users).toHaveLength(0)
   })
 })
