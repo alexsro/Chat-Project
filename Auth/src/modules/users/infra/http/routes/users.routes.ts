@@ -39,4 +39,11 @@ usersRouter.put(
   usersController.update
 )
 
+usersRouter.delete(
+  '/:id',
+  ensureAuthenticated,
+  usersController.delete
+)
+
+
 export default usersRouter;

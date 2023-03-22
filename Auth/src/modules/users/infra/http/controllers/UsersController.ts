@@ -6,6 +6,7 @@ import ListUserService from '@modules/users/services/ListUserService';
 import { plainToInstance } from 'class-transformer'
 import User from '@modules/users/infra/prisma/entities/User';
 import UpdateUserService from '@modules/users/services/UpdateUserService';
+import DeleteUserService from '@modules/users/services/DeleteUserService';
 
 class UsersController {
   public async create(request: Request, response: Response): Promise<Response> {
@@ -45,6 +46,16 @@ class UsersController {
     })
 
     return response.send(plainToInstance(User, user))
+  }
+
+  public async delete(request: Request, response: Response): Promise<Response> {
+    const { id } = request.params
+
+    const deleteUser = container.resolve(DeleteUserService)
+
+    await deleteUser.execute(id)
+
+    return response.status(204).send()
   }
 
 }
